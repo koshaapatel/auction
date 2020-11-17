@@ -6,6 +6,7 @@ auctionApp.controller("DashBoardCtrl", function($rootScope,$scope, $http,$locati
         $scope.activeAuction = new Object();
         $scope.message = null;
         $scope.Timer = null;
+        $scope.arr=["hello", "kosha"];
 
         showUserInventory($scope.presentUser.userName);
         showActiveAuction();
@@ -150,13 +151,19 @@ auctionApp.controller("DashBoardCtrl", function($rootScope,$scope, $http,$locati
                 method: "GET",
                 crossDomain: true
             }).success(function (data, status, headers, config) {
+                console.log("data");
+                console.log(data);
                 $scope.activeAuction = data[0];
+                console.log("scope active auction");
+                console.log($scope.activeAuction);
                 if(data.length > 0) {
                     $scope.Timer = $interval(function () {
                         $scope.timeRemaining = ((data[0].startTimeStamp + 90000) - new Date().getTime()) / 1000;
                         $scope.KeyTurn = true;
                     }, 1000);
                 }
+                console.log($scope.arr[0]);
+                console.log($scope.arr[1]);
             }).error(function (data, status, headers, config) {
                 console.log("Error In get Inventories for user", data);
                 $scope.message = data.message;
