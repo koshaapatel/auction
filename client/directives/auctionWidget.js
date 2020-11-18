@@ -27,7 +27,7 @@ auctionApp.directive("auctionWidget", ['LoggedInCheck','ipCookie','host','$http'
             '</div>'+
             '</div>'+
             '<div class="col-md-12 auctionItemDiv">'+
-            '<label>Time Left :</label> {{ timeRemainin | number:0 || "0" }}'+
+            '<label>Time Left :</label> {{ timeRemaining[$index]  | number:0 || "0" }}'+
             '</div>'+
             '<div class="col-md-12 auctionItemDiv">'+
             '<label>Minimum Bid :</label> {{ auction.minBid }}'+
