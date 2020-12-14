@@ -32,6 +32,12 @@ auctionApp.directive("auctionWidget", ['LoggedInCheck','ipCookie','host','$http'
             '<div class="col-md-12 auctionItemDiv">'+
             '<label>Minimum Bid :</label> {{ activeAuction.minBid }}'+
             '</div>'+
+            '<div class="col-md-12 auctionItemDiv" ng-if="activeAuction.bidderName">'+
+            '<label>Current Winner :</label> {{ activeAuction.bidderName }}'+
+            '</div>'+
+            '<div class="col-md-12 auctionItemDiv" ng-if="activeAuction.bidderBid">'+
+            '<label>Current Winner bidded :</label> {{ activeAuction.bidderBid }}'+
+            '</div>'+
             '<div class="col-md-12 auctionItemDiv alignCenter" ng-show="activeAuction.userName != presentUser.userName">'+
             '<input autocomplete="off" class="paper-input paper-input--floating" type="number" id="bidVal"/>'+
             '<label>Enter value for Bid</label>'+
