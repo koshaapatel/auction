@@ -52,9 +52,9 @@ auctionApp.directive("auctionWidget", ['LoggedInCheck','ipCookie','host','$http'
             '<div class="col-md-12 auctionItemDiv alignCenter">'+
             '<label>No auction at the moment</label>'+
             '</div>'+
-            '<div class="col-md-12 auctionItemDiv alignCenter">'+
-            '<button class="btn btn-xs btn-primary"  ng-click="">Deregister</button>'+
             '</div>'+
+            '<div class="col-md-12 auctionItemDiv alignCenter">'+
+            '<button class="btn btn-xs btn-primary"  ng-click="deregister()">Deregister</button>'+
             '</div>',
         link : function (scope, $element, attrs) {
 
