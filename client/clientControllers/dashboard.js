@@ -8,6 +8,7 @@ auctionApp.controller("DashBoardCtrl", function($rootScope,$scope, $http,$locati
         $scope.message = null;
         $scope.Timer = null;
         $scope.flag = false;
+        $scope.currentwinner = null;
 
         showUserInventory($scope.presentUser.userName);
         showActiveAuction();
@@ -94,6 +95,7 @@ auctionApp.controller("DashBoardCtrl", function($rootScope,$scope, $http,$locati
                         errToggleModal("Bid has been posted! Thanks.");
                     }
                     $scope.timeRemaining = $scope.timeRemaining + 10;
+                    $scope.currentwinner = $scope.presentUser.userName;
                 }).error(function (data, status, headers, config) {
                     console.log("Error In get Inventories for user", data);
                     $scope.message = data.message;
@@ -137,6 +139,50 @@ auctionApp.controller("DashBoardCtrl", function($rootScope,$scope, $http,$locati
             $("#startAuctionModal").modal('toggle');
         };
 
+        $scope.deregister = function () {
+            //console.log($scope.activeAuction.bidderBid);
+            console.log($scope.presentUser.userName);
+            console.log($scope.currentwinner);
+            console.log($scope.currentseller);
+        
+            if($scope.currentwinner != null){
+                errToggleModal1("User cant be deregistered.");
+            }else{
+                console.log("oh ya ya"); 
+                $http({
+                    url: host + "user/deregister",
+                    method: "GET",
+                    data: {
+                        userName: $scope.presentUser.userName
+                    },
+                    crossDomain: true
+                }).success(function (data, status, headers, config) {
+                    if (data.err != true) {
+                        errToggleModal1("User is deregisterd.");
+                        console.log("DONE DEREGISTERD");
+                        LoggedInCheck.setLogged(false);
+                        ipCookie.remove('auctionCookie');
+                        localStorage.removeItem('lastLogin');
+                        $location.path("/login");
+                    } else {
+                        errToggleModal1(data.msg);
+                    }
+                }).error(function (data, status, headers, config) {
+                    errToggleModal1(data)
+                });
+            }
+        };
+    
+        function errToggleModal(err){
+            $(".loaderImage").hide();
+            $scope.message = err;
+            $('#deregisterErrorModal').modal('toggle');
+            setTimeout(function () {
+                $scope.message = '';
+                $('#deregisterErrorModal').modal('toggle');
+            }, 1500);
+        }
+
         function restartAuction(tempdata) {
             console.log("restart auction");
             console.log(tempdata.itemName);           
@@ -165,7 +211,7 @@ auctionApp.controller("DashBoardCtrl", function($rootScope,$scope, $http,$locati
             console.log("end of restart auction");
         }
     
-        function errToggleModal(err){
+        function errToggleModal1(err){
             $(".loaderImage").hide();
             $scope.message = err;
             $('#deregisterErrorModal').modal('toggle');
