@@ -9,6 +9,3 @@
 2. Run - "bower install" to install bower dependencies for client side libraries.
 3. If no error is found (as it is not found for me) Run using cmd - "forever start server.js"
 4. Open - "http://localhost:3000" in browser to see the Auction App.
-
-Or <br/>
-
