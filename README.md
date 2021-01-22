@@ -1,10 +1,3 @@
-# Auction App - Introduction
-
-<img src="https://img.shields.io/static/v1?label=Node&message=8&color=<COLOR>"> <img src="https://img.shields.io/static/v1?label=MySql&message=5.5&color=<COLOR>"> <img src="https://img.shields.io/static/v1?label=Build&message=Passing&color=<COLOR>">
-
-Auction App is a end-to-end implemented classified platform with option of bidding for products in realtime. This is a feature rich repo and was originally part of Crossover's onboarding program (where it was selected).
- 
-
 ## Prerequisites
 1. Nodejs installed on the platform
 2. MySQL installed and server running
@@ -18,6 +11,4 @@ Auction App is a end-to-end implemented classified platform with option of biddi
 4. Open - "http://localhost:3000" in browser to see the Auction App.
 
 Or <br/>
-
-<b> Run - "sh appInstallerScript.sh" to install all dependencies, db scripts, npm modules and run the server. </b>
 
